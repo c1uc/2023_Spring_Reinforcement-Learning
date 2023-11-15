@@ -1,0 +1,43 @@
+\section{Supporting Lemmas and Theoretical Analysis}
+\label{section:analysis}
+\textbf{Lemma 1.} Let \textit{X} and \(m_\tau\) is its \(\tau^{th}\) expectile be a real-valued random variable with a bounded support and supremum of the support is \(x^\ast\). Then,
+\begin{equation*}
+    \lim_{\tau \to \infty} m_\tau = x^\ast
+\end{equation*}
+\textit{Proof.} Expectiles of a random variable have the same supremum \(x^\ast\) and for all \(\tau_1\) and \(\tau_2\), we get \(m_{\tau_1} \leq m_{\tau_2}\). Thus, the limit follows from the properties of bounded monotonically non-decreasing functions.
+\hfill \(\square\)
+\\
+\textbf{Lemma 2.} For all \(s, \tau_1, \text{and } \tau_2\) such that \( \tau_1 < \tau_2 \) we get
+\begin{equation*}
+    V_{\tau_1}(s) \leq V_{\tau_2}(s).
+\end{equation*}
+\textit{Proof.} Likely to policy improvement proof (\cite{Sutton2018-hp}). We can rewrite \(V_{\tau_1}\) as 
+
+\begin{equation*}
+    \begin{split}
+    V_{\tau_1} & = \mathbb{E}_{(a \sim \mu(\cdot \mid s))}^{\tau_1}\left[r(s, a) + \gamma \mathbb{E}_{s' \sim p(\cdot \mid s, a)}\left[V_{\tau_1}(s')\right]\right] \\
+    & \leq \mathbb{E}_{a \sim \mu(\cdot \mid s)}^{\tau_2}\left[r(s, a) + \gamma \mathbb{E}_{s' \sim p(\cdot \mid s, a)}\left[V_{\tau_1}(s')\right]\right] \\
+    & = \mathbb{E}_{a \sim \mu(\cdot \mid s)}^{\tau_2}\left[r(s, a) + \gamma \mathbb{E}_{s' \sim p(\cdot \mid s, a)}\mathbb{E}_{a' \sim \mu(\cdot \mid s')}^{\tau_1}\left[r(s', a') + \gamma \mathbb{E}_{s'' \sim p(\cdot \mid s', a')}\left[V_{\tau_1}(s'')\right]\right]\right] \\
+    & \leq \mathbb{E}_{a \sim \mu(\cdot \mid s)}^{\tau_2}\left[r(s, a) + \gamma \mathbb{E}_{s' \sim p(\cdot \mid s, a)}\mathbb{E}_{a' \sim \mu(\cdot \mid s')}^{\tau_2}\left[r(s', a') + \gamma \mathbb{E}_{s'' \sim p(\cdot \mid s', a')}\left[V_{\tau_1}(s'')\right]\right]\right] \\
+    & = \mathbb{E}_{a \sim \mu(\cdot \mid s)}^{\tau_2}\left[r(s, a) + \gamma \mathbb{E}_{s' \sim p(\cdot \mid s, a)}\mathbb{E}_{a' \sim \mu(\cdot \mid s')}^{\tau_2}\left[r(s', a') + \gamma \mathbb{E}_{s'' \sim p(\cdot \mid s', a')}\mathbb{E}_{a'' \sim \mu(\cdot \mid s'')}\left[r(s'', a'') + \hdots\right]\right]\right] \\
+    & \vdots \\
+    & \leq V_{\tau_2}(s)_\square
+    \end{split}
+\end{equation*}
+
+\textbf{Corollay 2.1.} For any \(\tau\) and \(s\) we have
+\begin{equation*}
+    V_\tau(s) \leq \max_{\substack{ a \in \mathcal{A} \\ s.t. \pi_\beta(a \mid s) > 0}} Q^\ast(s,a)
+\end{equation*}
+where \(Q^\ast(s, a)\) is an optimal state-action value constrained to the dataset and defined as
+\begin{equation*}
+    Q^\ast(s, a) = r(s, a) + \gamma \mathbb{E}_{s' \sim p(\cdot \mid s, a)}\left[\max_{\substack{a' \in \mathcal{A} \\ s.t. \pi_\beta(a \mid s) > 0}} Q^\ast(s', a')\right].
+\end{equation*}
+\textit{Proof.} Convex combination is smaller than its maximum.
+\hfill \(\square\)
+\\
+\textbf{Theorem 3.}
+\begin{equation*}
+    \lim_{\tau \to 1} V_\tau(s) = \max_{\substack{a \in \mathcal{A} \\ s.t. \pi_\beta(a \mid s) > 0}}Q^\ast(s,a).
+\end{equation*}
+\textit{Proof.} The proof can be obtained by combining \textbf{Lemma 1} and \textbf{Corollary 2.1}.

@@ -1,0 +1,17 @@
+\begin{thebibliography}{2}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Kostrikov et~al.(2021)Kostrikov, Nair, and Levine]{2110.06169}
+Ilya Kostrikov, Ashvin Nair, and Sergey Levine.
+\newblock Offline reinforcement learning with implicit q-learning, 2021.
+
+\bibitem[Sutton and Barto(2018)]{Sutton2018-hp}
+Richard~S Sutton and Andrew~G Barto.
+\newblock \emph{Reinforcement Learning}.
+\newblock Adaptive Computation and Machine Learning series. Bradford Books, Cambridge, MA, 2 edition, November 2018.
+
+\end{thebibliography}

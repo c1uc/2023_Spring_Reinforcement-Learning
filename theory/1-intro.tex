@@ -1,0 +1,14 @@
+\section{Introduction}
+\label{section:intro}
+
+\begin{itemize}
+    % The main research challenges tackled by the paper
+    \item This paper tackles the problem of Offline Reinforcement Learning.
+    % The high-level technical insights into the problem of interest
+    \item Offline Reinforcement Learning is a approach which learns from collected dataset and without interacting with the environment.
+    % The main contributions of the paper (compared to the prior works)
+    \item The authors proposed a new algorithm called Implicit Q-Learning, proved that it has good convergence properties. \cite{2110.06169}
+    \item Implicit Q-Learning is a multi-step dynamic programming algorithm, and it avoids querying the out-of-distribution actions. With additional policy extraction step, it can recover near-optimal policies in the offline setting. 
+    % Your personal perspective on the proposed method
+    \item In my opinion, they used some elegant and simple formulas to build up this algorithm. Though they induced more parameters, but the overall algorithm is still easy to implement.
+\end{itemize}

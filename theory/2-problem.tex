@@ -1,0 +1,24 @@
+\section{Preliminaries}
+\label{section:problem}
+\textbf{MDP} \( \left(\mathcal{S}, \mathcal{A}, p_0(s), p(s' \mid s, a), r(s, a), \gamma\right) \) where \(\mathcal{S}\) is a state space, \(\mathcal{A}\) is an action space, \(p_0(s)\) is  distribution of initial states, \(p(s' \mid s, a)\) is environment dynamics, \(r(s, a)\) is reward function, and \(\gamma\) is discount factor. \\
+\textbf{Policy} \(\pi_\beta\) is the dataset (behavior) policy. \\
+\textbf{Value functions} 
+\begin{equation*}
+    V_\tau(s) = \mathbb{E}_{a \sim \mu(\cdot \mid s)}^\tau\left[Q_\tau(s, a)\right]
+\end{equation*}
+\begin{equation*}
+    Q_\tau(s, a) = r(s, a) + \gamma \mathbb{E}_{s' \sim p(\cdot \mid s, a)}\left[V_\tau(s')\right]
+\end{equation*}
+where \(\mathbb{E}^\tau(x)\) is the \(\tau^{th}\) expectile of \(x\).
+\\
+\textbf{Loss functions}
+\begin{equation*}
+    L_V(\psi) = \mathbb{E}_{(s, a) \sim D}\left[L_2^\tau(Q_{\hat{\theta}}(s, a)-V_\psi(s))\right]
+\end{equation*}
+\begin{equation*}
+    L_Q(\theta) = \mathbb{E}_{(s, a, s') \sim D}\left[(r(s, a) + \gamma V_\psi (s') - Q_\theta (s, a))^2\right]
+\end{equation*}
+\begin{equation*}
+    L_\pi(\phi) = \mathbb{E}_{(s,a) \sim D}\left[\text{exp}(\beta (Q_{\hat{\theta}}(s, a)-V_\psi(s)))\text{log}\pi_\phi(a \mid s)\right]
+\end{equation*}
+where \(D\) is the collected dataset, \(L_2^\tau(x) = |\tau - \mathbbm{1}(x < 0)|x^2\), \(\tau \in (0, 1)\) is the asymmetric loss function and \(\beta \in [0, \infty)\) is an inverse temperature.
